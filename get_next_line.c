@@ -6,7 +6,7 @@
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 03:05:44 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/20 12:41:48 by ouaarabe         ###   ########.fr       */
+/*   Updated: 2022/11/20 15:19:16 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char *ft_stat(char *s)
 		i++;
 		k++;
 	}
+	free(s);
 	return (tmp);
 }
 char *ft_line(char *s)

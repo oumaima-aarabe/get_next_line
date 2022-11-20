@@ -6,7 +6,7 @@
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 03:05:50 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/20 10:32:40 by ouaarabe         ###   ########.fr       */
+/*   Updated: 2022/11/20 14:52:12 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,41 @@ void	*ft_calloc(size_t count, size_t size)
 	return (memory);
 }
 
-size_t	ft_strlen(const	char *s)
+size_t	ft_strlen(char *s)
 {
 	const char	*c;
-
+	
+	if (!s)
+		return (0);
 	c = s;
 	while (*c)
 		c++;
 	return ((size_t)(c - s));
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strdup(char *s1)
+{
+	size_t	len;
+	char	*dup;
+	char	*assl;
+	size_t	i;
+	if(!s1)
+		return 0;
+	len = ft_strlen(s1);
+	assl = (char *)s1;
+	i = 0;
+	dup = (char *)ft_calloc(sizeof(*s1), (len + 1));
+	if (!dup)
+		return (NULL);
+	while (i < len)
+	{
+		dup[i] = assl[i];
+		i++;
+	}
+	return (dup);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	ls1;
 	size_t	ls2;
@@ -47,7 +71,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	// if (!s1 || !s2)
 	// 	return (NULL);
 	if (!s1)
-		return (strdup(s2));
+		return (ft_strdup(s2));
 	ls1 = ft_strlen(s1);
 	ls2 = ft_strlen(s2);
 	result = ft_calloc((ls1 + ls2 + 1),sizeof(char));
@@ -57,12 +81,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 			result[i] = s1[i];
 	while(s2[++j])
 		result[i + j] = s2[j];
-		return (result);
-	printf("[joined : %s] ", result);
-	return (NULL);
+	free(s1);
+	return (result);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(char *str, int c)
 {
 	size_t	len;
 	size_t	i;
@@ -73,7 +96,7 @@ char	*ft_strchr(const char *str, int c)
 	while (i < len)
 	{
 		if (str[i] == (unsigned char)c)
-			return ((char *)(&str[i]));
+			return (&str[i]);
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 06:12:08 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/20 10:30:50 by ouaarabe         ###   ########.fr       */
+/*   Updated: 2022/11/20 14:26:58 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 #endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const	char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *str, int c);
+size_t	ft_strlen(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *str, int c);
 void	*ft_calloc(size_t count, size_t size);
-
+char	*ft_strdup(char *s1);
 
 #endif
