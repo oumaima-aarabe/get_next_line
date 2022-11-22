@@ -5,12 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 03:05:44 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/20 15:19:16 by ouaarabe         ###   ########.fr       */
+/*   Created: 2022/11/21 19:55:41 by ouaarabe          #+#    #+#             */
+/*   Updated: 2022/11/22 17:42:04 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
 
 char *ft_stat(char *s)
 {
@@ -35,7 +34,6 @@ char *ft_stat(char *s)
 		i++;
 		k++;
 	}
-	free(s);
 	return (tmp);
 }
 char *ft_line(char *s)
@@ -57,8 +55,6 @@ char *ft_line(char *s)
 		line[j] = s[j];
 		j++;
 	}
-	// printf("[i : %zu]\n", i);
-	// printf("[line : %s]", line);
 	return (line);
 }
 
@@ -74,23 +70,14 @@ char	*get_line(int fd, char *s)
 	while (!ft_strchr(s, '\n') && nbyte != 0)
 	{
 		nbyte = read(fd, buff, BUFFER_SIZE);
-		// printf("[buff : %s]\n", buff);
-		// printf("[nbyte : %d]\n", nbyte);
 		if (nbyte == -1)
-		{
-			free (buff);
-			return (NULL);
-		}
-		else if (nbyte == 0)
-		{
-			if (*buff == 0)
-			{
-				buff[nbyte] = '\0';
-				free(buff);
-				return (NULL);
-			}
-			break ;
-		}
+			return (free (buff), NULL);
+		// else if (nbyte == 0)
+		// {
+		// 	if (*buff == 0)
+		// 		return (free(buff), NULL);
+		// 	break ;
+		// }
 		buff[nbyte] = '\0';
 		s = ft_strjoin(s, buff);
 	}
@@ -100,23 +87,21 @@ char	*get_line(int fd, char *s)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
+	char		*line = NULL;
 	static char	*s;
 
-	// printf("[gs1 : %s\n] ", s);
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	s = get_line(fd, s);
-		// printf("[s : %s]\n", s);
 	if (!s)
 		return (NULL);
+	if(line)
+		free(line);
 	line = ft_line(s);
 	if (!line)
 		return (NULL);
-	//  printf("[gline : %s] ", line);
 	s = ft_stat(s);
 	if (!s)
 		return (NULL);
-	// printf("[ss : %s\n] ", s);
 	return(line);
 }

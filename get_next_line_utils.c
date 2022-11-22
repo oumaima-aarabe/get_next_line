@@ -6,7 +6,7 @@
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 03:05:50 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/20 14:52:12 by ouaarabe         ###   ########.fr       */
+/*   Updated: 2022/11/21 18:27:51 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ft_calloc(size_t count, size_t size)
 size_t	ft_strlen(char *s)
 {
 	const char	*c;
-	
+
 	if (!s)
 		return (0);
 	c = s;
@@ -44,8 +44,9 @@ char	*ft_strdup(char *s1)
 	char	*dup;
 	char	*assl;
 	size_t	i;
+
 	if(!s1)
-		return 0;
+		return (0);
 	len = ft_strlen(s1);
 	assl = (char *)s1;
 	i = 0;
@@ -68,6 +69,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	ssize_t i = -1;
 	ssize_t j = -1;
 
+	
 	// if (!s1 || !s2)
 	// 	return (NULL);
 	if (!s1)

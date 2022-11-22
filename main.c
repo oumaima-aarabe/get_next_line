@@ -1,6 +1,6 @@
-#include<fcntl.h>
-#include<stdio.h>
-#include"get_next_line.h"
+// #include<fcntl.h>
+// #include<stdio.h>
+// #include"get_next_line.h"
 
 int main(int ac, char *av[])
 {
@@ -8,17 +8,9 @@ int main(int ac, char *av[])
 	char *str;
 	(void)ac;
 	// while ((str = get_next_line(fd))){
-	// 	printf("%s", str);
+	// 	printf("{{%s}}", str);
 	// 	free(str);
 	// }
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
 	close (fd);
-	// system("leaks a.out");
-}
+// 	// system("leaks a.out");
+// }
