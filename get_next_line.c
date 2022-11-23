@@ -6,10 +6,11 @@
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:55:41 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/22 17:42:04 by ouaarabe         ###   ########.fr       */
+/*   Updated: 2022/11/23 23:25:32 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 
 char *ft_stat(char *s)
 {
@@ -27,14 +28,14 @@ char *ft_stat(char *s)
 		i++;
 	tmp = ft_calloc(j, sizeof(char));
 	if (!tmp)
-		return(NULL);
+		return(free(s), NULL);
 	while(j--)
 	{
 		tmp[k] = s[i];
 		i++;
 		k++;
 	}
-	return (tmp);
+	return (free(s),tmp);
 }
 char *ft_line(char *s)
 {
@@ -71,13 +72,13 @@ char	*get_line(int fd, char *s)
 	{
 		nbyte = read(fd, buff, BUFFER_SIZE);
 		if (nbyte == -1)
-			return (free (buff), NULL);
-		// else if (nbyte == 0)
-		// {
-		// 	if (*buff == 0)
-		// 		return (free(buff), NULL);
-		// 	break ;
-		// }
+			return (free (buff), free (s), NULL);
+		 else if (nbyte == 0)
+		{
+			if (*buff == 0)
+				return (free(buff), free(s), NULL);
+			break ;
+		}
 		buff[nbyte] = '\0';
 		s = ft_strjoin(s, buff);
 	}
@@ -95,13 +96,17 @@ char	*get_next_line(int fd)
 	s = get_line(fd, s);
 	if (!s)
 		return (NULL);
-	if(line)
-		free(line);
 	line = ft_line(s);
 	if (!line)
-		return (NULL);
+		{
+			free(s);
+            return (NULL);
+		}
 	s = ft_stat(s);
 	if (!s)
-		return (NULL);
+	{
+		free(line);
+        return (NULL);
+	}
 	return(line);
 }
