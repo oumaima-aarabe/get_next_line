@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 19:55:41 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/24 21:41:48 by ouaarabe         ###   ########.fr       */
+/*   Created: 2022/11/24 23:29:21 by ouaarabe          #+#    #+#             */
+/*   Updated: 2022/11/24 23:33:29 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,22 @@ char	*ft_line(char *s)
 char	*get_line(int fd, char *s)
 {
 	int		nbyte;
-	char	*buff;
+	char	*buff[10240];
 
-	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buff)
+	buff[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buff[fd])
 		return (NULL);
 	nbyte = 1;
 	while (!ft_strchr(s, '\n') && nbyte != 0)
 	{
-		nbyte = read(fd, buff, BUFFER_SIZE);
+		nbyte = read(fd, buff[fd], BUFFER_SIZE);
 		if (nbyte == -1)
 			return (free (buff), NULL);
-		buff[nbyte] = '\0';
-		s = ft_strjoin(s, buff);
+		buff[fd][nbyte] = '\0';
+		s = ft_strjoin(s, buff[fd]);
 	}
-	free(buff);
-	buff = NULL;
+	free(buff[fd]);
+	buff[fd] = NULL;
 	return (s);
 }
 
