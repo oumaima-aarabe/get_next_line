@@ -6,11 +6,11 @@
 /*   By: ouaarabe <ouaarabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:31:45 by ouaarabe          #+#    #+#             */
-/*   Updated: 2022/11/24 23:41:28 by ouaarabe         ###   ########.fr       */
+/*   Updated: 2022/12/03 21:10:21 by ouaarabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include"get_next_line_bonus.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
